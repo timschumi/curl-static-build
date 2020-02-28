@@ -1,9 +1,9 @@
 #!/bin/bash -e
 
 SCRIPTS_DIR="$(dirname "$0")"
-export SOURCE_DIR="/home/vagrant/curl"
+export CURL_SOURCE="/home/vagrant/curl"
 
-$SCRIPTS_DIR/get-sources.sh 7.68.0
+$SCRIPTS_DIR/curl-sources.sh 7.68.0
 
-$SCRIPTS_DIR/build-arch.sh x64
-$SCRIPTS_DIR/build-arch.sh x86
+$SCRIPTS_DIR/curl-arch.sh x64
+$SCRIPTS_DIR/curl-arch.sh x86

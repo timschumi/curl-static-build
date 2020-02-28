@@ -2,12 +2,12 @@
 
 configure_args=()
 
-if [ -z "$SOURCE_DIR" ]; then
+if [ -z "$CURL_SOURCE" ]; then
     echo "Source has not been set! Exiting..."
     exit 1
 fi
 
-if [ ! -d "$SOURCE_DIR" ]; then
+if [ ! -d "$CURL_SOURCE" ]; then
     echo "Source is not present! Exiting..."
     exit 1
 fi
@@ -37,12 +37,12 @@ fi
 mkdir -p $BUILD_DIR
 cd "$BUILD_DIR"
 
-$SOURCE_DIR/configure \
+$CURL_SOURCE/configure \
 	--disable-shared \
 	${configure_args[@]}
 
 make -j2
-make test
+#make test
 make DESTDIR="$BUILD_DIR/target" install
 
 rm -rf "$OUT_DIR"

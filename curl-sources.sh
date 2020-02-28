@@ -1,12 +1,12 @@
 #!/bin/bash -e
 
-if [ -z "$SOURCE_DIR" ]; then
+if [ -z "$CURL_SOURCE" ]; then
     echo "Source has not been set! Exiting..."
     exit 1
 fi
 
-if [ -d "$SOURCE_DIR" ]; then
-    rm -rf "$SOURCE_DIR"
+if [ -d "$CURL_SOURCE" ]; then
+    rm -rf "$CURL_SOURCE"
 fi
 
 if [ ! -f curl-$1.tar.gz ]; then
@@ -14,4 +14,4 @@ if [ ! -f curl-$1.tar.gz ]; then
 fi
 
 tar -xf curl-$1.tar.gz
-mv curl-$1 "$SOURCE_DIR"
+mv curl-$1 "$CURL_SOURCE"
