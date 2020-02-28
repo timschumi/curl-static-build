@@ -45,4 +45,5 @@ make -j2
 make test
 make DESTDIR="$BUILD_DIR/target" install
 
+rm -rf "$OUT_DIR"
 cp -r "$BUILD_DIR/target/usr/local/lib" "$OUT_DIR"
