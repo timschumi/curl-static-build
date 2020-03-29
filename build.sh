@@ -12,7 +12,7 @@ $SCRIPTS_DIR/openssl-arch.sh x64
 $SCRIPTS_DIR/openssl-arch.sh x86
 
 # Build curl
-$SCRIPTS_DIR/curl-sources.sh 7.68.0
+$SCRIPTS_DIR/curl-sources.sh 7.69.1
 
 $SCRIPTS_DIR/curl-arch.sh x64
 $SCRIPTS_DIR/curl-arch.sh x86
