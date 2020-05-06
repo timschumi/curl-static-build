@@ -12,22 +12,27 @@ if [ ! -d "$OPENSSL_SOURCE" ]; then
     exit 1
 fi
 
+if [ -z "$OPENSSL_BUILD" ]; then
+    echo "OPENSSL_BUILD has not been set! Exiting..."
+    exit 1
+fi
+
 if [ -z "$OPENSSL_OUT" ]; then
     echo "OPENSSL_OUT has not been set! Exiting..."
     exit 1
 fi
 
-rm -rf "$OPENSSL_OUT"
+rm -rf "$OPENSSL_BUILD"
 
 case "$1" in
   "x64")
-    BUILD_DIR="$OPENSSL_OUT-64"
-    OUT_DIR="/vagrant/openssl-build-64"
+    BUILD_DIR="$OPENSSL_BUILD-64"
+    OUT_DIR="$OPENSSL_OUT-64"
     configure_args+=("enable-ec_nistp_64_gcc_128" "linux-x86_64")
     ;;
   "x86")
-    BUILD_DIR="$OPENSSL_OUT-32"
-    OUT_DIR="/vagrant/openssl-build-32"
+    BUILD_DIR="$OPENSSL_BUILD-32"
+    OUT_DIR="$OPENSSL_OUT-32"
     export CC="gcc -m32"
     export CXX="g++ -m32"
     export PKG_CONFIG_PATH="/usr/lib32/pkgconfig"

@@ -10,19 +10,25 @@ if [ ! -d "$ZLIB_SOURCE" ]; then
     exit 1
 fi
 
+if [ -z "$ZLIB_BUILD" ]; then
+    echo "ZLIB_BUILD has not been set! Exiting..."
+    exit 1
+fi
+
 if [ -z "$ZLIB_OUT" ]; then
     echo "ZLIB_OUT has not been set! Exiting..."
     exit 1
 fi
 
+
 case "$1" in
   "x64")
-    BUILD_DIR="$ZLIB_OUT-64"
-    OUT_DIR="/vagrant/zlib-build-64"
+    BUILD_DIR="$ZLIB_BUILD-64"
+    OUT_DIR="$ZLIB_OUT-64"
     ;;
   "x86")
-    BUILD_DIR="$ZLIB_OUT-32"
-    OUT_DIR="/vagrant/zlib-build-32"
+    BUILD_DIR="$ZLIB_BUILD-32"
+    OUT_DIR="$ZLIB_OUT-32"
     export CC="gcc -m32"
     export CXX="g++ -m32"
     export PKG_CONFIG_PATH="/usr/lib32/pkgconfig"

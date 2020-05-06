@@ -1,11 +1,22 @@
 #!/bin/bash -e
 
 SCRIPTS_DIR="$(dirname "$0")"
-export CURL_SOURCE="/home/vagrant/curl"
-export ZLIB_SOURCE="/home/vagrant/zlib"
-export ZLIB_OUT="/home/vagrant/zlib-build"
-export OPENSSL_SOURCE="/home/vagrant/openssl"
-export OPENSSL_OUT="/home/vagrant/openssl-build"
+WORKING_DIR="$(pwd)"
+
+if [ "$SCRIPTS_DIR" = "$WORKING_DIR" ]; then
+    echo "error: Can't build inside the scripts dir"
+    exit 1
+fi
+
+export CURL_SOURCE="$WORKING_DIR/curl"
+export CURL_BUILD="$WORKING_DIR/curl-build"
+export CURL_OUT="$SCRIPTS_DIR/curl"
+export ZLIB_SOURCE="$WORKING_DIR/zlib"
+export ZLIB_BUILD="$WORKING_DIR/zlib-build"
+export ZLIB_OUT="$SCRIPTS_DIR/zlib"
+export OPENSSL_SOURCE="$WORKING_DIR/openssl"
+export OPENSSL_BUILD="$WORKING_DIR/openssl-build"
+export OPENSSL_OUT="$SCRIPTS_DIR/openssl"
 
 # Build zlib
 $SCRIPTS_DIR/zlib-sources.sh 1.2.11
