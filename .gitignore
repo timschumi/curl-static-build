@@ -1,6 +1,4 @@
-curl-build-*/
-openssl-build-*/
-zlib-build-*/
+curl-*/
+openssl-*/
+zlib-*/
 .vagrant/
-
-*.tar.gz
