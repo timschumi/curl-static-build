@@ -16,7 +16,7 @@ case "$1" in
   "x64")
     BUILD_DIR="/home/vagrant/curl-build-64"
     OUT_DIR="/vagrant/curl-build-64"
-    configure_args+=("--with-ssl=$OPENSSL_OUT-64/target/usr/local")
+    configure_args+=("--with-ssl=$OPENSSL_OUT-64/target/usr/local" "--with-zlib=$ZLIB_OUT-64/target/usr/local")
     ;;
   "x86")
     BUILD_DIR="/home/vagrant/curl-build-32"
@@ -24,7 +24,7 @@ case "$1" in
     export CC="gcc -m32"
     export CXX="g++ -m32"
     export PKG_CONFIG_PATH="/usr/lib32/pkgconfig"
-    configure_args+=("--with-ssl=$OPENSSL_OUT-32/target/usr/local")
+    configure_args+=("--with-ssl=$OPENSSL_OUT-32/target/usr/local" "--with-zlib=$ZLIB_OUT-32/target/usr/local")
     ;;
   *)
     echo "Unrecognized architecture: '$1'"

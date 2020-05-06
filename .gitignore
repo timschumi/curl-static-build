@@ -1,3 +1,4 @@
 curl-build-*/
 openssl-build-*/
+zlib-build-*/
 .vagrant/
