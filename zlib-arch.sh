@@ -25,6 +25,7 @@ case "$1" in
   "x64")
     BUILD_DIR="$ZLIB_BUILD-64"
     OUT_DIR="$ZLIB_OUT-64"
+    export CFLAGS="-fPIC"
     ;;
   "x86")
     BUILD_DIR="$ZLIB_BUILD-32"
