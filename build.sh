@@ -21,17 +21,29 @@ export OPENSSL_OUT="$SCRIPTS_DIR/openssl"
 # Build zlib
 $SCRIPTS_DIR/zlib-sources.sh 1.2.11
 
+if [ -n "$1" ]; then
+$SCRIPTS_DIR/zlib-arch.sh "$1"
+else
 $SCRIPTS_DIR/zlib-arch.sh x64
 $SCRIPTS_DIR/zlib-arch.sh x86
+fi
 
 # Build openssl
 $SCRIPTS_DIR/openssl-sources.sh 1.1.1d
 
+if [ -n "$1" ]; then
+$SCRIPTS_DIR/openssl-arch.sh "$1"
+else
 $SCRIPTS_DIR/openssl-arch.sh x64
 $SCRIPTS_DIR/openssl-arch.sh x86
+fi
 
 # Build curl
 $SCRIPTS_DIR/curl-sources.sh 7.69.1
 
+if [ -n "$1" ]; then
+$SCRIPTS_DIR/curl-arch.sh "$1"
+else
 $SCRIPTS_DIR/curl-arch.sh x64
 $SCRIPTS_DIR/curl-arch.sh x86
+fi
