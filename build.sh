@@ -1,6 +1,6 @@
 #!/bin/bash -e
 
-SCRIPTS_DIR="$(dirname "$0")"
+SCRIPTS_DIR="$(dirname "$(readlink -f "$0")")"
 WORKING_DIR="$(pwd)"
 
 if [ "$SCRIPTS_DIR" = "$WORKING_DIR" ]; then
