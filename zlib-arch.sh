@@ -20,16 +20,14 @@ if [ -z "$ZLIB_OUT" ]; then
     exit 1
 fi
 
+BUILD_DIR="$ZLIB_BUILD-$1"
+OUT_DIR="$ZLIB_OUT-$1"
 
 case "$1" in
   "x64")
-    BUILD_DIR="$ZLIB_BUILD-64"
-    OUT_DIR="$ZLIB_OUT-64"
     export CFLAGS="-fPIC"
     ;;
   "x86")
-    BUILD_DIR="$ZLIB_BUILD-32"
-    OUT_DIR="$ZLIB_OUT-32"
     export CC="gcc -m32"
     export CXX="g++ -m32"
     export PKG_CONFIG_PATH="/usr/lib32/pkgconfig"

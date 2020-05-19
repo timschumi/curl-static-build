@@ -12,19 +12,18 @@ if [ ! -d "$CURL_SOURCE" ]; then
     exit 1
 fi
 
+BUILD_DIR="$CURL_BUILD-$1"
+OUT_DIR="$CURL_OUT-$1"
+
 case "$1" in
   "x64")
-    BUILD_DIR="$CURL_BUILD-64"
-    OUT_DIR="$CURL_OUT-64"
-    configure_args+=("--with-ssl=$OPENSSL_BUILD-64/target/usr/local" "--with-zlib=$ZLIB_BUILD-64/target/usr/local")
+    configure_args+=("--with-ssl=$OPENSSL_BUILD-$1/target/usr/local" "--with-zlib=$ZLIB_BUILD-$1/target/usr/local")
     ;;
   "x86")
-    BUILD_DIR="$CURL_BUILD-32"
-    OUT_DIR="$CURL_OUT-32"
     export CC="gcc -m32"
     export CXX="g++ -m32"
     export PKG_CONFIG_PATH="/usr/lib32/pkgconfig"
-    configure_args+=("--with-ssl=$OPENSSL_BUILD-32/target/usr/local" "--with-zlib=$ZLIB_BUILD-32/target/usr/local")
+    configure_args+=("--with-ssl=$OPENSSL_BUILD-$1/target/usr/local" "--with-zlib=$ZLIB_BUILD-$1/target/usr/local")
     ;;
   *)
     echo "Unrecognized architecture: '$1'"

@@ -24,15 +24,14 @@ fi
 
 rm -rf "$OPENSSL_BUILD"
 
+BUILD_DIR="$OPENSSL_BUILD-$1"
+OUT_DIR="$OPENSSL_OUT-$1"
+
 case "$1" in
   "x64")
-    BUILD_DIR="$OPENSSL_BUILD-64"
-    OUT_DIR="$OPENSSL_OUT-64"
     configure_args+=("enable-ec_nistp_64_gcc_128" "linux-x86_64")
     ;;
   "x86")
-    BUILD_DIR="$OPENSSL_BUILD-32"
-    OUT_DIR="$OPENSSL_OUT-32"
     export CC="gcc -m32"
     export CXX="g++ -m32"
     export PKG_CONFIG_PATH="/usr/lib32/pkgconfig"
