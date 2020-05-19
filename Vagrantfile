@@ -2,21 +2,20 @@
 # vi: set ft=ruby :
 
 Vagrant.configure("2") do |config|
-  config.vm.box = "generic/arch"
+  config.vm.define "x64" do |x64|
+    x64.vm.box = "generic/debian9"
+  end
 
+  config.vm.define "x86" do |x86|
+    x86.vm.box = "generic-x32/debian9"
+  end
+
+  config.vm.hostname = "curl-build"
   config.vm.synced_folder ".", "/vagrant", nfs_version: 4
 
   config.vm.provision "shell", inline: <<-SHELL
-    echo "[multilib]" >> /etc/pacman.conf
-    echo "Include = /etc/pacman.d/mirrorlist" >> /etc/pacman.conf
+    apt update && apt -y upgrade
 
-    pacman -Syu --noconfirm
-    pacman -S base-devel git inetutils python2 python2-configparser multilib-devel zlib lib32-zlib openssl lib32-openssl --needed --noconfirm
-
-    # python2 -> python
-    ln -s /usr/bin/python2 /usr/bin/python
-
-    # Set a nicer hostname
-    hostname curl-build
+    apt -y install build-essential libssl-dev
   SHELL
 end
