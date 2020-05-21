@@ -1,4 +1,5 @@
 curl-*/
 openssl-*/
 zlib-*/
+dist/
 .vagrant/
