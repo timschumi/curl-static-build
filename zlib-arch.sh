@@ -23,20 +23,14 @@ fi
 BUILD_DIR="$ZLIB_BUILD-$1"
 OUT_DIR="$ZLIB_OUT-$1"
 
-case "$1" in
-  "x64")
-    export CFLAGS="-fPIC"
-    ;;
-  "x86")
-    export CC="gcc -m32"
-    export CXX="g++ -m32"
-    export PKG_CONFIG_PATH="/usr/lib32/pkgconfig"
-    ;;
-  *)
-    echo "Unrecognized architecture: '$1'"
-    exit 1
-    ;;
-esac
+# Setup compiler
+[[ "$1" = "linux-"* ]] && export CC="gcc"
+[[ "$1" = "linux-"* ]] && export CXX="g++"
+
+[[ "$1" = *"-x86" ]] && export CC="${CC} -m32"
+[[ "$1" = *"-x86" ]] && export CXX="${CXX} -m32"
+
+[[ "$1" = "linux-"* ]] && [[ "$1" = *"-x64" ]] && export CFLAGS="-fPIC"
 
 if [ -d "$BUILD_DIR" ]; then
     rm -rf "$BUILD_DIR"

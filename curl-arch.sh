@@ -14,22 +14,14 @@ fi
 
 BUILD_DIR="$CURL_BUILD-$1"
 OUT_DIR="$CURL_OUT-$1"
+configure_args+=("--with-ssl=$OPENSSL_BUILD-$1/target/usr/local" "--with-zlib=$ZLIB_BUILD-$1/target/usr/local")
 
-case "$1" in
-  "x64")
-    configure_args+=("--with-ssl=$OPENSSL_BUILD-$1/target/usr/local" "--with-zlib=$ZLIB_BUILD-$1/target/usr/local")
-    ;;
-  "x86")
-    export CC="gcc -m32"
-    export CXX="g++ -m32"
-    export PKG_CONFIG_PATH="/usr/lib32/pkgconfig"
-    configure_args+=("--with-ssl=$OPENSSL_BUILD-$1/target/usr/local" "--with-zlib=$ZLIB_BUILD-$1/target/usr/local")
-    ;;
-  *)
-    echo "Unrecognized architecture: '$1'"
-    exit 1
-    ;;
-esac
+# Setup compiler
+[[ "$1" = "linux-"* ]] && export CC="gcc"
+[[ "$1" = "linux-"* ]] && export CXX="g++"
+
+[[ "$1" = *"-x86" ]] && export CC="${CC} -m32"
+[[ "$1" = *"-x86" ]] && export CXX="${CXX} -m32"
 
 if [ -d "$BUILD_DIR" ]; then
     rm -rf "$BUILD_DIR"
@@ -43,7 +35,6 @@ $CURL_SOURCE/configure \
 	${configure_args[@]}
 
 make -j2
-#make test
 make DESTDIR="$BUILD_DIR/target" install
 
 rm -rf "$OUT_DIR"

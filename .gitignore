@@ -1,5 +1,5 @@
 curl-*/
 openssl-*/
 zlib-*/
-dist/
+dist-*/
 .vagrant/

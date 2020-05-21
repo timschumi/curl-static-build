@@ -14,6 +14,16 @@ if [ -z "$1" ]; then
     exit 1
 fi
 
+if [[ "$1" != "linux-"* ]]; then
+    echo "error: Unknown host type in target '$1'"
+    exit 1
+fi
+
+if [[ "$1" != *"-x86" ]] && [[ "$1" != *"-x64" ]]; then
+    echo "error: Unknown architecture in target '$1'"
+    exit 1
+fi
+
 export CURL_SOURCE="$WORKING_DIR/curl"
 export CURL_BUILD="$WORKING_DIR/curl-build"
 export CURL_OUT="$SCRIPTS_DIR/curl"

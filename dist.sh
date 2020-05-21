@@ -4,19 +4,19 @@
 vagrant up
 
 # Build the libraries
-vagrant ssh x86 -c "/vagrant/build.sh x86"
-vagrant ssh x64 -c "/vagrant/build.sh x64"
+vagrant ssh x86 -c "/vagrant/build.sh linux-x86"
+vagrant ssh x64 -c "/vagrant/build.sh linux-x64"
 
 # Copy out all the files
-rm -rf dist
-mkdir -p dist
+rm -rf dist-linux
+mkdir -p dist-linux
 
-cp zlib-x86/libz.a         dist/libz.a
-cp openssl-x86/libssl.a    dist/libssl.a
-cp openssl-x86/libcrypto.a dist/libcrypto.a
-cp curl-x86/libcurl.a      dist/libcurl.a
+cp zlib-linux-x86/libz.a         dist-linux/libz.a
+cp openssl-linux-x86/libssl.a    dist-linux/libssl.a
+cp openssl-linux-x86/libcrypto.a dist-linux/libcrypto.a
+cp curl-linux-x86/libcurl.a      dist-linux/libcurl.a
 
-cp zlib-x64/libz.a         dist/libz-x64.a
-cp openssl-x64/libssl.a    dist/libssl-x64.a
-cp openssl-x64/libcrypto.a dist/libcrypto-x64.a
-cp curl-x64/libcurl.a      dist/libcurl-x64.a
+cp zlib-linux-x64/libz.a         dist-linux/libz-x64.a
+cp openssl-linux-x64/libssl.a    dist-linux/libssl-x64.a
+cp openssl-linux-x64/libcrypto.a dist-linux/libcrypto-x64.a
+cp curl-linux-x64/libcurl.a      dist-linux/libcurl-x64.a
