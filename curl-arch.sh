@@ -14,7 +14,7 @@ fi
 
 BUILD_DIR="$CURL_BUILD-$1"
 OUT_DIR="$CURL_OUT-$1"
-configure_args+=("--with-ssl=$OPENSSL_BUILD-$1/target/usr/local" "--with-zlib=$ZLIB_BUILD-$1/target/usr/local")
+configure_args+=("--with-ssl=$OPENSSL_BUILD-$1/target" "--with-zlib=$ZLIB_BUILD-$1/target")
 
 # Setup compiler
 [[ "$1" = "linux-"* ]] && export CC="gcc"

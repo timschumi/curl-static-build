@@ -49,12 +49,13 @@ cd "$BUILD_DIR"
 
 $OPENSSL_SOURCE/Configure \
     no-shared no-tests no-ssl3-method \
+    --prefix="$BUILD_DIR/target" --openssldir="$BUILD_DIR/target" \
     ${configure_args[@]}
 
 make -j2 depend
 make -j2
-make DESTDIR="$BUILD_DIR/target" install_sw
+make install_sw
 
 rm -rf "$OUT_DIR"
 mkdir -p "$OUT_DIR"
-cp -r "$BUILD_DIR/target/usr/local/lib" "$OUT_DIR"
+cp -r "$BUILD_DIR/target/lib" "$OUT_DIR"
