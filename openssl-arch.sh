@@ -56,4 +56,5 @@ make -j2
 make DESTDIR="$BUILD_DIR/target" install_sw
 
 rm -rf "$OUT_DIR"
+mkdir -p "$OUT_DIR"
 cp -r "$BUILD_DIR/target/usr/local/lib" "$OUT_DIR"
