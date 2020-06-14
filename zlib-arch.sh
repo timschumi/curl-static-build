@@ -32,18 +32,13 @@ OUT_DIR="$ZLIB_OUT-$1"
 
 [[ "$1" = "linux-"* ]] && [[ "$1" = *"-x64" ]] && export CFLAGS="-fPIC"
 
-if [ -d "$BUILD_DIR" ]; then
-    rm -rf "$BUILD_DIR"
-fi
+rm -rf "$BUILD_DIR"
+rm -rf "$OUT_DIR"
 
 mkdir -p $BUILD_DIR
 cd "$BUILD_DIR"
 
-$ZLIB_SOURCE/configure
+$ZLIB_SOURCE/configure --prefix="$OUT_DIR"
 
 make -j2
-make DESTDIR="$BUILD_DIR/target" install
-
-rm -rf "$OUT_DIR"
-mkdir -p "$OUT_DIR"
-cp -r "$BUILD_DIR/target/usr/local/lib" "$OUT_DIR"
+make install

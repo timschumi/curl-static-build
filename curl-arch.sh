@@ -14,7 +14,7 @@ fi
 
 BUILD_DIR="$CURL_BUILD-$1"
 OUT_DIR="$CURL_OUT-$1"
-configure_args+=("--with-ssl=$OPENSSL_BUILD-$1/target" "--with-zlib=$ZLIB_BUILD-$1/target")
+configure_args+=("--with-ssl=$OPENSSL_OUT-$1" "--with-zlib=$ZLIB_OUT-$1")
 
 # Setup compiler
 [[ "$1" = "linux-"* ]] && export CC="gcc"
@@ -23,20 +23,16 @@ configure_args+=("--with-ssl=$OPENSSL_BUILD-$1/target" "--with-zlib=$ZLIB_BUILD-
 [[ "$1" = *"-x86" ]] && export CC="${CC} -m32"
 [[ "$1" = *"-x86" ]] && export CXX="${CXX} -m32"
 
-if [ -d "$BUILD_DIR" ]; then
-    rm -rf "$BUILD_DIR"
-fi
+rm -rf "$BUILD_DIR"
+rm -rf "$OUT_DIR"
 
 mkdir -p $BUILD_DIR
 cd "$BUILD_DIR"
 
 $CURL_SOURCE/configure \
 	--disable-shared \
+        --prefix="$OUT_DIR" \
 	${configure_args[@]}
 
 make -j2
-make DESTDIR="$BUILD_DIR/target" install
-
-rm -rf "$OUT_DIR"
-mkdir -p "$OUT_DIR"
-cp -r "$BUILD_DIR/target/usr/local/lib" "$OUT_DIR"
+make install

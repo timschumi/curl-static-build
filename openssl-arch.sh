@@ -40,22 +40,17 @@ if [[ "$1" = "linux-"* ]]; then
     [[ "$1" = *"-x64" ]] && configure_args+=("linux-x86_64")
 fi
 
-if [ -d "$BUILD_DIR" ]; then
-    rm -rf "$BUILD_DIR"
-fi
+rm -rf "$BUILD_DIR"
+rm -rf "$OUT_DIR"
 
 mkdir -p $BUILD_DIR
 cd "$BUILD_DIR"
 
 $OPENSSL_SOURCE/Configure \
     no-shared no-tests no-ssl3-method \
-    --prefix="$BUILD_DIR/target" --openssldir="$BUILD_DIR/target" \
+    --prefix="$OUT_DIR" --openssldir="$OUT_DIR" \
     ${configure_args[@]}
 
 make -j2 depend
 make -j2
 make install_sw
-
-rm -rf "$OUT_DIR"
-mkdir -p "$OUT_DIR"
-cp -r "$BUILD_DIR/target/lib" "$OUT_DIR"
