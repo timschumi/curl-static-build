@@ -16,6 +16,6 @@ Vagrant.configure("2") do |config|
   config.vm.provision "shell", inline: <<-SHELL
     apt update && apt -y upgrade
 
-    apt -y install build-essential
+    apt -y install build-essential mingw-w64
   SHELL
 end
