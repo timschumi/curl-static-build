@@ -39,9 +39,9 @@ $SCRIPTS_DIR/zlib-sources.sh 1.2.11
 $SCRIPTS_DIR/zlib-arch.sh "$1"
 
 # Build openssl
-$SCRIPTS_DIR/openssl-sources.sh 1.1.1d
+$SCRIPTS_DIR/openssl-sources.sh 1.1.1g
 $SCRIPTS_DIR/openssl-arch.sh "$1"
 
 # Build curl
-$SCRIPTS_DIR/curl-sources.sh 7.69.1
+$SCRIPTS_DIR/curl-sources.sh 7.71.1
 $SCRIPTS_DIR/curl-arch.sh "$1"
