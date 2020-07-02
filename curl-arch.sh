@@ -17,11 +17,18 @@ OUT_DIR="$CURL_OUT-$1"
 configure_args+=("--with-ssl=$OPENSSL_OUT-$1" "--with-zlib=$ZLIB_OUT-$1")
 
 # Setup compiler
-[[ "$1" = "linux-"* ]] && export CC="gcc"
-[[ "$1" = "linux-"* ]] && export CXX="g++"
+[[ "$1" = *"-x86" ]] && CCPREFIX="i686"
+[[ "$1" = *"-x64" ]] && CCPREFIX="x86_64"
+[[ "$1" = "linux-"* ]] && CCPREFIX="${CCPREFIX}-linux-gnu"
+[[ "$1" = "windows-"* ]] && CCPREFIX="${CCPREFIX}-w64-mingw32"
+export CC="${CCPREFIX}-gcc"
+export CXX="${CCPREFIX}-g++"
 
-[[ "$1" = *"-x86" ]] && export CC="${CC} -m32"
-[[ "$1" = *"-x86" ]] && export CXX="${CXX} -m32"
+if [[ "$1" = "windows-"* ]]; then
+    configure_args+=("--without-ssl")
+    configure_args+=("--with-winssl")
+    configure_args+=("--host=${CCPREFIX}")
+fi
 
 rm -rf "$BUILD_DIR"
 rm -rf "$OUT_DIR"

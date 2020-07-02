@@ -14,7 +14,7 @@ if [ -z "$1" ]; then
     exit 1
 fi
 
-if [[ "$1" != "linux-"* ]]; then
+if [[ "$1" != "linux-"* ]] && [[ "$1" != "windows-"* ]]; then
     echo "error: Unknown host type in target '$1'"
     exit 1
 fi

@@ -28,8 +28,11 @@ BUILD_DIR="$OPENSSL_BUILD-$1"
 OUT_DIR="$OPENSSL_OUT-$1"
 
 # Setup compiler
-[[ "$1" = "linux-"* ]] && export CC="gcc"
-[[ "$1" = "linux-"* ]] && export CXX="g++"
+[[ "$1" = *"-x86" ]] && CCPREFIX="i686"
+[[ "$1" = *"-x64" ]] && CCPREFIX="x86_64"
+[[ "$1" = "linux-"* ]] && CCPREFIX="${CCPREFIX}-linux-gnu"
+[[ "$1" = "windows-"* ]] && CCPREFIX="${CCPREFIX}-w64-mingw32"
+configure_args+="--cross-compile-prefix=${CCPREFIX}-"
 
 # Enable magic optimzation for x64
 [[ "$1" = *"-x64" ]] && configure_args+=("enable-ec_nistp_64_gcc_128")
@@ -38,6 +41,10 @@ OUT_DIR="$OPENSSL_OUT-$1"
 if [[ "$1" = "linux-"* ]]; then
     [[ "$1" = *"-x86" ]] && configure_args+=("linux-x86")
     [[ "$1" = *"-x64" ]] && configure_args+=("linux-x86_64")
+fi
+if [[ "$1" = "windows-"* ]]; then
+    [[ "$1" = *"-x86" ]] && configure_args+=("mingw")
+    [[ "$1" = *"-x64" ]] && configure_args+=("mingw64")
 fi
 
 rm -rf "$BUILD_DIR"
