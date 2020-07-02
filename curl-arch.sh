@@ -27,6 +27,7 @@ export CXX="${CCPREFIX}-g++"
 if [[ "$1" = "windows-"* ]]; then
     configure_args+=("--without-ssl")
     configure_args+=("--with-winssl")
+    configure_args+=("--disable-pthreads")
     configure_args+=("--host=${CCPREFIX}")
 fi
 
