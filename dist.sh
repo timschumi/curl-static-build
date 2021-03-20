@@ -6,8 +6,8 @@ vagrant up
 # Build the libraries
 vagrant ssh x86 -c "/vagrant/build.sh linux-x86"
 vagrant ssh x64 -c "/vagrant/build.sh linux-x64"
-vagrant ssh x86 -c "/vagrant/build.sh windows-x86"
-vagrant ssh x64 -c "/vagrant/build.sh windows-x64"
+vagrant ssh win -c "/vagrant/build.sh windows-x86"
+vagrant ssh win -c "/vagrant/build.sh windows-x64"
 
 # Copy out all the files
 rm -rf dist-linux
