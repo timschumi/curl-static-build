@@ -3,13 +3,15 @@
 
 Vagrant.configure("2") do |config|
   config.vm.define "x64" do |x64|
-    x64.vm.box = "generic/debian9"
-    x64.vm.provision "shell", path: "vagrant-provision.sh"
+    x64.vm.box = "generic/debian8"
+    x64.vm.provision "shell", path: "vagrant-provision.sh", env: {
+    }
   end
 
   config.vm.define "x86" do |x86|
-    x86.vm.box = "generic-x32/debian9"
-    x86.vm.provision "shell", path: "vagrant-provision.sh"
+    x86.vm.box = "timschumi/debian8-x32"
+    x86.vm.provision "shell", path: "vagrant-provision.sh", env: {
+    }
   end
 
   config.vm.define "win" do |win|

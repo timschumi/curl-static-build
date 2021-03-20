@@ -19,6 +19,10 @@ configure_args+=("--with-ssl=$OPENSSL_OUT-$1" "--with-zlib=$ZLIB_OUT-$1")
 # Setup compiler
 [[ "$1" = *"-x86" ]] && CCPREFIX="i686"
 [[ "$1" = *"-x64" ]] && CCPREFIX="x86_64"
+
+# Debian 8 and older only had gcc for i586
+[[ "$1" = "linux-x86" ]] && [[ "$(lsb_release -c -s)" = "jessie" ]] && CCPREFIX="i586"
+
 [[ "$1" = "linux-"* ]] && CCPREFIX="${CCPREFIX}-linux-gnu"
 [[ "$1" = "windows-"* ]] && CCPREFIX="${CCPREFIX}-w64-mingw32"
 export CC="${CCPREFIX}-gcc"
