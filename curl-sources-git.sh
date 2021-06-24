@@ -5,7 +5,10 @@ if [ -z "$CURL_SOURCE" ]; then
     exit 1
 fi
 
-if [ -d "$CURL_SOURCE" -a -d "$CURL_SOURCE/.git" ]; then
+if [ -f "$CURL_SOURCE/.git/BISECT_LOG" ]; then
+    cd "$CURL_SOURCE"
+    echo "Skipping git checkout to revision $1 due to active bisect."
+elif [ -d "$CURL_SOURCE" -a -d "$CURL_SOURCE/.git" ]; then
     cd "$CURL_SOURCE"
     git fetch origin $1 && git checkout $1
 else
