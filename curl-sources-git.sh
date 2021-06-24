@@ -15,4 +15,4 @@ else
 fi
 
 git clean -fdx
-./buildconf
+autoreconf -fi
