@@ -14,7 +14,7 @@ fi
 
 BUILD_DIR="$CURL_BUILD-$1"
 OUT_DIR="$CURL_OUT-$1"
-configure_args+=("--with-ssl=$OPENSSL_OUT-$1" "--with-zlib=$ZLIB_OUT-$1")
+configure_args+=("--with-zlib=$ZLIB_OUT-$1")
 
 # Setup compiler
 [[ "$1" = *"-x86" ]] && CCPREFIX="i686"
@@ -28,9 +28,11 @@ configure_args+=("--with-ssl=$OPENSSL_OUT-$1" "--with-zlib=$ZLIB_OUT-$1")
 export CC="${CCPREFIX}-gcc"
 export CXX="${CCPREFIX}-g++"
 
+# Select the correct TLS backends
+[[ "$1" = "linux-"* ]] && configure_args+=("--with-openssl=$OPENSSL_OUT-$1")
+[[ "$1" = "windows-"* ]] && configure_args+=("--with-schannel")
+
 if [[ "$1" = "windows-"* ]]; then
-    configure_args+=("--without-ssl")
-    configure_args+=("--with-winssl")
     configure_args+=("--disable-pthreads")
     configure_args+=("--host=${CCPREFIX}")
 fi
