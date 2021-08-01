@@ -43,5 +43,5 @@ $SCRIPTS_DIR/openssl-sources.sh 1.1.1k
 $SCRIPTS_DIR/openssl-arch.sh "$1"
 
 # Build curl
-$SCRIPTS_DIR/curl-sources.sh 7.77.0
+$SCRIPTS_DIR/curl-sources.sh 7.78.0
 $SCRIPTS_DIR/curl-arch.sh "$1"
