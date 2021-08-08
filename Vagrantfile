@@ -9,7 +9,7 @@ Vagrant.configure("2") do |config|
   end
 
   config.vm.define "x86" do |x86|
-    x86.vm.box = "timschumi/debian8-x32"
+    x86.vm.box = "generic-x32/debian8"
     x86.vm.provision "shell", path: "vagrant-provision.sh", env: {
     }
   end
