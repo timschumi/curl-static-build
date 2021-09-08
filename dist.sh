@@ -23,25 +23,31 @@ wait
 rm -rf dist-linux
 mkdir -p dist-linux
 
-cp out/zlib-linux-x86/lib/libz.a         dist-linux/libz.a
-cp out/openssl-linux-x86/lib/libssl.a    dist-linux/libssl.a
-cp out/openssl-linux-x86/lib/libcrypto.a dist-linux/libcrypto.a
-cp out/curl-linux-x86/lib/libcurl.a      dist-linux/libcurl.a
+vagrant ssh x86 -c "
+cp zlib-out-linux-x86/lib/libz.a /vagrant/dist-linux/libz.a
+cp openssl-out-linux-x86/lib/libssl.a /vagrant/dist-linux/libssl.a
+cp openssl-out-linux-x86/lib/libcrypto.a /vagrant/dist-linux/libcrypto.a
+cp curl-out-linux-x86/lib/libcurl.a /vagrant/dist-linux/libcurl.a
+"
 
-cp out/zlib-linux-x64/lib/libz.a         dist-linux/libz-x64.a
-cp out/openssl-linux-x64/lib/libssl.a    dist-linux/libssl-x64.a
-cp out/openssl-linux-x64/lib/libcrypto.a dist-linux/libcrypto-x64.a
-cp out/curl-linux-x64/lib/libcurl.a      dist-linux/libcurl-x64.a
+vagrant ssh x64 -c "
+cp zlib-out-linux-x64/lib/libz.a /vagrant/dist-linux/libz-x64.a
+cp openssl-out-linux-x64/lib/libssl.a /vagrant/dist-linux/libssl-x64.a
+cp openssl-out-linux-x64/lib/libcrypto.a /vagrant/dist-linux/libcrypto-x64.a
+cp curl-out-linux-x64/lib/libcurl.a /vagrant/dist-linux/libcurl-x64.a
+"
 
 rm -rf dist-windows
 mkdir -p dist-windows
 
-cp out/zlib-windows-x86/lib/libz.a         dist-windows/libz.a
-cp out/openssl-windows-x86/lib/libssl.a    dist-windows/libssl.a
-cp out/openssl-windows-x86/lib/libcrypto.a dist-windows/libcrypto.a
-cp out/curl-windows-x86/lib/libcurl.a      dist-windows/libcurl.a
+vagrant ssh win -c "
+cp zlib-out-windows-x86/lib/libz.a /vagrant/dist-windows/libz.a
+cp openssl-out-windows-x86/lib/libssl.a /vagrant/dist-windows/libssl.a
+cp openssl-out-windows-x86/lib/libcrypto.a /vagrant/dist-windows/libcrypto.a
+cp curl-out-windows-x86/lib/libcurl.a /vagrant/dist-windows/libcurl.a
 
-cp out/zlib-windows-x64/lib/libz.a         dist-windows/libz-x64.a
-cp out/openssl-windows-x64/lib/libssl.a    dist-windows/libssl-x64.a
-cp out/openssl-windows-x64/lib/libcrypto.a dist-windows/libcrypto-x64.a
-cp out/curl-windows-x64/lib/libcurl.a      dist-windows/libcurl-x64.a
+cp zlib-out-windows-x64/lib/libz.a /vagrant/dist-windows/libz-x64.a
+cp openssl-out-windows-x64/lib/libssl.a /vagrant/dist-windows/libssl-x64.a
+cp openssl-out-windows-x64/lib/libcrypto.a /vagrant/dist-windows/libcrypto-x64.a
+cp curl-out-windows-x64/lib/libcurl.a /vagrant/dist-windows/libcurl-x64.a
+"

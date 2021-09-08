@@ -26,13 +26,13 @@ fi
 
 export CURL_SOURCE="$WORKING_DIR/curl"
 export CURL_BUILD="$WORKING_DIR/curl-build"
-export CURL_OUT="$SCRIPTS_DIR/out/curl"
+export CURL_OUT="$WORKING_DIR/curl-out"
 export ZLIB_SOURCE="$WORKING_DIR/zlib"
 export ZLIB_BUILD="$WORKING_DIR/zlib-build"
-export ZLIB_OUT="$SCRIPTS_DIR/out/zlib"
+export ZLIB_OUT="$WORKING_DIR/zlib-out"
 export OPENSSL_SOURCE="$WORKING_DIR/openssl"
 export OPENSSL_BUILD="$WORKING_DIR/openssl-build"
-export OPENSSL_OUT="$SCRIPTS_DIR/out/openssl"
+export OPENSSL_OUT="$WORKING_DIR/openssl-out"
 
 # Build zlib
 $SCRIPTS_DIR/zlib-sources.sh 1.2.11
