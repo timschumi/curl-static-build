@@ -45,3 +45,4 @@ $SCRIPTS_DIR/openssl-arch.sh "$1"
 # Build curl
 $SCRIPTS_DIR/curl-sources.sh 7.78.0
 $SCRIPTS_DIR/curl-arch.sh "$1"
+$SCRIPTS_DIR/curl-arch.sh "$1" httponly

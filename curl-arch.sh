@@ -16,6 +16,18 @@ BUILD_DIR="$CURL_BUILD-$1"
 OUT_DIR="$CURL_OUT-$1"
 configure_args+=("--with-zlib=$ZLIB_OUT-$1")
 
+# Parse options
+for i in "${@:2}"; do
+	case "$i" in
+	"httponly")
+		build_httponly=1
+		;;
+	*)
+		echo "Unknown argument: '$i'" >&2
+		exit 1
+	esac
+done
+
 # Setup compiler
 [[ "$1" = *"-x86" ]] && CCPREFIX="i686"
 [[ "$1" = *"-x64" ]] && CCPREFIX="x86_64"
@@ -35,6 +47,27 @@ export CXX="${CCPREFIX}-g++"
 if [[ "$1" = "windows-"* ]]; then
     configure_args+=("--disable-pthreads")
     configure_args+=("--host=${CCPREFIX}")
+fi
+
+# Disable everything except HTTP if requested
+if [ "$build_httponly" = "1" ]; then
+    BUILD_DIR+="-httponly"
+    OUT_DIR+="-httponly"
+    configure_args+=("--disable-ftp")
+    configure_args+=("--disable-file")
+    configure_args+=("--disable-ldap")
+    configure_args+=("--disable-ldaps")
+    configure_args+=("--disable-rtsp")
+    configure_args+=("--disable-proxy")
+    configure_args+=("--disable-dict")
+    configure_args+=("--disable-telnet")
+    configure_args+=("--disable-tftp")
+    configure_args+=("--disable-pop3")
+    configure_args+=("--disable-imap")
+    configure_args+=("--disable-smb")
+    configure_args+=("--disable-smtp")
+    configure_args+=("--disable-gopher")
+    configure_args+=("--disable-mqtt")
 fi
 
 rm -rf "$BUILD_DIR"

@@ -40,11 +40,13 @@ docker cp curl_static_x86:/home/vagrant/zlib-out-linux-x86/lib/libz.a dist-linux
 docker cp curl_static_x86:/home/vagrant/openssl-out-linux-x86/lib/libssl.a dist-linux/libssl.a
 docker cp curl_static_x86:/home/vagrant/openssl-out-linux-x86/lib/libcrypto.a dist-linux/libcrypto.a
 docker cp curl_static_x86:/home/vagrant/curl-out-linux-x86/lib/libcurl.a dist-linux/libcurl.a
+docker cp curl_static_x86:/home/vagrant/curl-out-linux-x86-httponly/lib/libcurl.a dist-linux/libcurl-httponly.a
 
 docker cp curl_static_x64:/home/vagrant/zlib-out-linux-x64/lib/libz.a dist-linux/libz-x64.a
 docker cp curl_static_x64:/home/vagrant/openssl-out-linux-x64/lib/libssl.a dist-linux/libssl-x64.a
 docker cp curl_static_x64:/home/vagrant/openssl-out-linux-x64/lib/libcrypto.a dist-linux/libcrypto-x64.a
 docker cp curl_static_x64:/home/vagrant/curl-out-linux-x64/lib/libcurl.a dist-linux/libcurl-x64.a
+docker cp curl_static_x64:/home/vagrant/curl-out-linux-x64-httponly/lib/libcurl.a dist-linux/libcurl-httponly-x64.a
 
 rm -rf dist-windows
 mkdir -p dist-windows
@@ -53,8 +55,10 @@ docker cp curl_static_win:/home/vagrant/zlib-out-windows-x86/lib/libz.a dist-win
 docker cp curl_static_win:/home/vagrant/openssl-out-windows-x86/lib/libssl.a dist-windows/libssl.a
 docker cp curl_static_win:/home/vagrant/openssl-out-windows-x86/lib/libcrypto.a dist-windows/libcrypto.a
 docker cp curl_static_win:/home/vagrant/curl-out-windows-x86/lib/libcurl.a dist-windows/libcurl.a
+docker cp curl_static_win:/home/vagrant/curl-out-windows-x86-httponly/lib/libcurl.a dist-windows/libcurl-httponly.a
 
 docker cp curl_static_win:/home/vagrant/zlib-out-windows-x64/lib/libz.a dist-windows/libz-x64.a
 docker cp curl_static_win:/home/vagrant/openssl-out-windows-x64/lib/libssl.a dist-windows/libssl-x64.a
 docker cp curl_static_win:/home/vagrant/openssl-out-windows-x64/lib/libcrypto.a dist-windows/libcrypto-x64.a
 docker cp curl_static_win:/home/vagrant/curl-out-windows-x64/lib/libcurl.a dist-windows/libcurl-x64.a
+docker cp curl_static_win:/home/vagrant/curl-out-windows-x64-httponly/lib/libcurl.a dist-windows/libcurl-httponly-x64.a
