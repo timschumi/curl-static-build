@@ -4,7 +4,7 @@ export DEBIAN_FRONTEND=noninteractive
 
 apt update && apt -y upgrade
 
-apt -y install build-essential wget lsb-release
+apt -y install build-essential wget lsb-release pkg-config
 
 if [ -n "$PROVISION_NEEDS_MINGW" ]; then
 	apt -y install mingw-w64
