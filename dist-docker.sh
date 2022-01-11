@@ -27,16 +27,16 @@ wait
 # Build the libraries
 {
 docker exec -u vagrant -w /home/vagrant curl_static_x86 /vagrant/build.sh linux-x86
-} &
+} | sed 's/^/x86 | /' &
 
 {
 docker exec -u vagrant -w /home/vagrant curl_static_x64 /vagrant/build.sh linux-x64
-} &
+} | sed 's/^/x64 | /' &
 
 {
 docker exec -u vagrant -w /home/vagrant curl_static_win /vagrant/build.sh windows-x86
 docker exec -u vagrant -w /home/vagrant curl_static_win /vagrant/build.sh windows-x64
-} &
+} | sed 's/^/win | /' &
 
 wait
 
