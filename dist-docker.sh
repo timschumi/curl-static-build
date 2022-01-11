@@ -2,17 +2,17 @@
 
 # Ensure the machines are up
 if ! docker start curl_static_x86; then
-    docker run --name curl_static_x86 -td -v .:/vagrant --platform=linux/386 docker.io/debian:8
+    docker run --name curl_static_x86 -td -v "$(pwd):/vagrant" --platform=linux/386 docker.io/debian:8
     docker exec curl_static_x86 /vagrant/vagrant-provision.sh
 fi
 
 if ! docker start curl_static_x64; then
-    docker run --name curl_static_x64 -td -v .:/vagrant --platform=linux/amd64 docker.io/debian:8
+    docker run --name curl_static_x64 -td -v "$(pwd):/vagrant" --platform=linux/amd64 docker.io/debian:8
     docker exec curl_static_x64 /vagrant/vagrant-provision.sh
 fi
 
 if ! docker start curl_static_win; then
-    docker run --name curl_static_win -td -v .:/vagrant docker.io/debian:10
+    docker run --name curl_static_win -td -v "$(pwd):/vagrant" docker.io/debian:10
     docker exec -e PROVISION_NEEDS_MINGW=1 curl_static_win /vagrant/vagrant-provision.sh
 fi
 
