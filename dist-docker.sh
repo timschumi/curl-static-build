@@ -6,37 +6,37 @@ if ! docker start curl_static_x86; then
     docker run --name curl_static_x86 -td -v "$(pwd):/vagrant" --platform=linux/386 docker.io/debian:8
     docker exec curl_static_x86 /vagrant/vagrant-provision.sh
 fi
-} | sed 's/^/x86 | /' &
+} 2>&1 | sed 's/^/x86 | /' &
 
 {
 if ! docker start curl_static_x64; then
     docker run --name curl_static_x64 -td -v "$(pwd):/vagrant" --platform=linux/amd64 docker.io/debian:8
     docker exec curl_static_x64 /vagrant/vagrant-provision.sh
 fi
-} | sed 's/^/x64 | /' &
+} 2>&1 | sed 's/^/x64 | /' &
 
 {
 if ! docker start curl_static_win; then
     docker run --name curl_static_win -td -v "$(pwd):/vagrant" docker.io/debian:10
     docker exec -e PROVISION_NEEDS_MINGW=1 curl_static_win /vagrant/vagrant-provision.sh
 fi
-} | sed 's/^/win | /' &
+} 2>&1 | sed 's/^/win | /' &
 
 wait
 
 # Build the libraries
 {
 docker exec -u vagrant -w /home/vagrant curl_static_x86 /vagrant/build.sh linux-x86
-} | sed 's/^/x86 | /' &
+} 2>&1 | sed 's/^/x86 | /' &
 
 {
 docker exec -u vagrant -w /home/vagrant curl_static_x64 /vagrant/build.sh linux-x64
-} | sed 's/^/x64 | /' &
+} 2>&1 | sed 's/^/x64 | /' &
 
 {
 docker exec -u vagrant -w /home/vagrant curl_static_win /vagrant/build.sh windows-x86
 docker exec -u vagrant -w /home/vagrant curl_static_win /vagrant/build.sh windows-x64
-} | sed 's/^/win | /' &
+} 2>&1 | sed 's/^/win | /' &
 
 wait
 
