@@ -4,21 +4,21 @@
 {
 if ! docker start curl_static_x86; then
     docker run --name curl_static_x86 -td -v "$(pwd):/vagrant" --platform=linux/386 docker.io/debian:8
-    docker exec curl_static_x86 /vagrant/vagrant-provision.sh
+    docker exec curl_static_x86 /vagrant/provision.sh
 fi
 } 2>&1 | sed 's/^/x86 | /' &
 
 {
 if ! docker start curl_static_x64; then
     docker run --name curl_static_x64 -td -v "$(pwd):/vagrant" --platform=linux/amd64 docker.io/debian:8
-    docker exec curl_static_x64 /vagrant/vagrant-provision.sh
+    docker exec curl_static_x64 /vagrant/provision.sh
 fi
 } 2>&1 | sed 's/^/x64 | /' &
 
 {
 if ! docker start curl_static_win; then
     docker run --name curl_static_win -td -v "$(pwd):/vagrant" docker.io/debian:10
-    docker exec -e PROVISION_NEEDS_MINGW=1 curl_static_win /vagrant/vagrant-provision.sh
+    docker exec -e PROVISION_NEEDS_MINGW=1 curl_static_win /vagrant/provision.sh
 fi
 } 2>&1 | sed 's/^/win | /' &
 
