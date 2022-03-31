@@ -55,7 +55,7 @@ if [[ "$1" = "windows-"* ]]; then
 else
     mkdir -p $BUILD_DIR
     cd "$BUILD_DIR"
-    $ZLIB_SOURCE/configure --prefix="$OUT_DIR"
+    $ZLIB_SOURCE/configure --static --prefix="$OUT_DIR"
 fi
 
 make ${MAKEFLAGS} -j2
