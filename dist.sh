@@ -3,15 +3,15 @@
 # Ensure the machines are up
 {
 if ! docker start curl_static_x86; then
-    docker run --name curl_static_x86 -td -v "$(pwd):/vagrant" --platform=linux/386 docker.io/debian:8
-    docker exec curl_static_x86 /vagrant/provision.sh
+    docker run --name curl_static_x86 -td -v "$(pwd):/vagrant" registry.gitlab.steamos.cloud/steamrt/scout/sdk/i386
+    docker exec -e PROVISION_BINUTILS_COMPAT_LINKS=2.30 curl_static_x86 /vagrant/provision.sh
 fi
 } 2>&1 | sed 's/^/x86 | /' &
 
 {
 if ! docker start curl_static_x64; then
-    docker run --name curl_static_x64 -td -v "$(pwd):/vagrant" --platform=linux/amd64 docker.io/debian:8
-    docker exec curl_static_x64 /vagrant/provision.sh
+    docker run --name curl_static_x64 -td -v "$(pwd):/vagrant" registry.gitlab.steamos.cloud/steamrt/scout/sdk
+    docker exec -e PROVISION_BINUTILS_COMPAT_LINKS=2.30 curl_static_x64 /vagrant/provision.sh
 fi
 } 2>&1 | sed 's/^/x64 | /' &
 

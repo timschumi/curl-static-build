@@ -2,12 +2,24 @@
 
 export DEBIAN_FRONTEND=noninteractive
 
-apt update && apt -y upgrade
+apt-get update && apt-get -y upgrade
 
-apt -y install build-essential wget lsb-release pkg-config ca-certificates
+apt-get -y install build-essential wget lsb-release pkg-config ca-certificates
+
+if [ -n "$PROVISION_BINUTILS_COMPAT_LINKS" ]; then
+	for i in /usr/bin/*-linux-gnu-*-${PROVISION_BINUTILS_COMPAT_LINKS}; do
+		LINKNAME="$(sed "s/-${PROVISION_BINUTILS_COMPAT_LINKS}\$//g" <<< "${i}")"
+
+		if [ -f "${LINKNAME}" ]; then
+			continue
+		fi
+
+		ln -svf "${i}" "${LINKNAME}"
+	done
+fi
 
 if [ -n "$PROVISION_NEEDS_MINGW" ]; then
-	apt -y install mingw-w64
+	apt-get -y install mingw-w64
 fi
 
 # Disable DST Root CA X3 if present
@@ -16,5 +28,6 @@ update-ca-certificates
 
 # Create vagrant user if necessary
 if ! id -u vagrant; then
+	mkdir -p /home
 	useradd -s /bin/bash -m vagrant
 fi
