@@ -14,7 +14,7 @@ fi
 
 BUILD_DIR="$CURL_BUILD-$1"
 OUT_DIR="$CURL_OUT-$1"
-configure_args+=("--with-zlib=$ZLIB_OUT-$1")
+configure_args+=("--with-zlib=$ZLIB_OUT-$1" "--without-librtmp")
 
 # Parse options
 for i in "${@:2}"; do
