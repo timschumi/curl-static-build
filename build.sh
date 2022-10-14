@@ -35,7 +35,7 @@ export OPENSSL_BUILD="$WORKING_DIR/openssl-build"
 export OPENSSL_OUT="$WORKING_DIR/openssl-out"
 
 # Build zlib
-$SCRIPTS_DIR/zlib-sources.sh 1.2.12
+$SCRIPTS_DIR/zlib-sources.sh 1.2.13
 $SCRIPTS_DIR/zlib-arch.sh "$1"
 
 # Build openssl
