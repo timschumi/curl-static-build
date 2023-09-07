@@ -35,14 +35,14 @@ export OPENSSL_BUILD="$WORKING_DIR/openssl-build"
 export OPENSSL_OUT="$WORKING_DIR/openssl-out"
 
 # Build zlib
-$SCRIPTS_DIR/zlib-sources.sh 1.2.13
+$SCRIPTS_DIR/zlib-sources.sh 1.3
 $SCRIPTS_DIR/zlib-arch.sh "$1"
 
 # Build openssl
-$SCRIPTS_DIR/openssl-sources.sh 3.1.1
+$SCRIPTS_DIR/openssl-sources.sh 3.1.2
 $SCRIPTS_DIR/openssl-arch.sh "$1"
 
 # Build curl
-$SCRIPTS_DIR/curl-sources.sh 8.1.2
+$SCRIPTS_DIR/curl-sources.sh 8.2.1
 $SCRIPTS_DIR/curl-arch.sh "$1"
 $SCRIPTS_DIR/curl-arch.sh "$1" httponly
