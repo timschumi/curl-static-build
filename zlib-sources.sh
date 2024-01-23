@@ -10,7 +10,7 @@ if [ -d "$ZLIB_SOURCE" ]; then
 fi
 
 if [ ! -f zlib-$1.tar.gz ]; then
-    wget https://www.zlib.net/zlib-$1.tar.gz
+    wget https://www.zlib.net/fossils/zlib-$1.tar.gz
 fi
 
 tar -xf zlib-$1.tar.gz
