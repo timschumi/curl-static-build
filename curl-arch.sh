@@ -49,6 +49,10 @@ if [[ "$1" = "windows-"* ]]; then
     configure_args+=("--host=${CCPREFIX}")
 fi
 
+# We aren't doing any cookie handling at the moment, so don't require libpsl.
+# TODO: Look into supporting this properly.
+configure_args+=("--without-libpsl")
+
 # Disable everything except HTTP if requested
 if [ "$build_httponly" = "1" ]; then
     BUILD_DIR+="-httponly"
