@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-set +e
+set -e
 
 # Ensure the machines are up
 {
