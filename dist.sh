@@ -19,7 +19,7 @@ fi
 
 {
 if ! docker start curl_static_win; then
-    docker run --name curl_static_win -td -v "$(pwd):/vagrant" docker.io/debian:11
+    docker run --name curl_static_win -td -v "$(pwd):/vagrant" docker.io/debian:13
     docker exec -e PROVISION_NEEDS_MINGW=1 curl_static_win /vagrant/provision.sh
 fi
 } 2>&1 | sed 's/^/win | /' &
